@@ -112,6 +112,26 @@ namespace JQDataTable.Controllers
 
             return View(data);
         }
+
+        [HttpGet]
+        public ActionResult PrintModel()
+        {
+            List<UserData> data = new List<UserData>
+                {
+                    new UserData
+                    {
+                        ID = 1,
+                        Name = "Simon"
+                    },
+                    new UserData
+                    {
+                        ID = 2,
+                        Name = "Alex"
+                    }
+                };
+
+            return View(data);
+        }
     }
 
     public class TestData

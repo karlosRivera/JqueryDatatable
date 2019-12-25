@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<!-- saved from url=(0115)https://forums.asp.net/p/2162438/6287972.aspx?How+data+is+serialize+into+model+when+pass+to+client+side+from+action -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- build date: Wed, 06 Nov 2019 15:38:48 GMT -->
+	<title>How data is serialize into model when pass to client side from action | The ASP.NET Forums</title>
+	
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="alternate" type="application/rss+xml" title="How data is serialize into model when pass to client side from action RSS" href="https://forums.asp.net/t/rss/2162438">
+    
+
+<meta name="description" content="my question is very basic question. see how list of data is pass from action to client side. [HttpGet] public ActionResult Index() { List&amp;lt;UserData&amp;gt; data = new List&amp;lt;UserData&amp;gt; { new UserD...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@aspnet">
+<meta name="twitter:domain" content="forums.asp.net">
+<meta name="twitter:image:src" content="https://forums-asp.azureedge.net/resources/v-2019-07-08-001/cheetah/style/images/ui/asplogo-square.png">
+<meta name="twitter:title" content="How data is serialize into model when pass to client side from acti...">
+<meta name="twitter:description" content="my question is very basic question. see how list of data is pass from action to client side. [HttpGet] public ActionResult Index() { List&amp;lt;UserData&amp;gt; data = new List&amp;lt;UserData&amp;gt; { new UserD...">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How data is serialize into model when pass to client side from acti...">
+<meta property="og:description" content="my question is very basic question. see how list of data is pass from action to client side. [HttpGet] public ActionResult Index() { List&amp;lt;UserData&amp;gt; data = new List&amp;lt;UserData&amp;gt; { new UserD...">
+<meta property="og:image" content="https://forums-asp.azureedge.net/resources/v-2019-07-08-001/cheetah/style/images/ui/asplogo-square.png">
+<meta property="og:url" content="https://forums.asp.net/p/2162438/6287972.aspx?How+data+is+serialize+into+model+when+pass+to+client+side+from+action">
+<meta property="og:site_name" content="The Official Forums for Microsoft ASP.NET">
+<meta property="fb:admins" content="scott.hanselman">
+<meta property="fb:admins" content="jon.galloway">
+<meta property="fb:admins" content="robmcm">
+
+
+    <link rel="canonical" href="https://forums.asp.net/t/2162438.aspx?How+data+is+serialize+into+model+when+pass+to+client+side+from+action">
+
+    <link rel="search" type="application/opensearchdescription+xml" title="Forums.asp.net" href="https://forums.asp.net/opensearch.xml">
+	<link href="https://forums-asp.azureedge.net/resources/v-2019-07-08-001/favicon.ico" rel="shortcut icon">    
+    
+	
+		<link href="./How data is serialize into model when pass to client side from action _ The ASP.NET Forums_files/common-responsive.css" rel="stylesheet" type="text/css" media="all">
+	
+    
+		
+	
+	<!--[if lte IE 9]>
+      <script src='https://forums-asp.azureedge.net/resources/v-2019-07-08-001/scripts/html5.js' type="text/javascript"></script>
+    <![endif]-->
+    <script async="" src="./How data is serialize into model when pass to client side from action _ The ASP.NET Forums_files/analytics.js.download"></script><script type="text/javascript" src="./How data is serialize into model when pass to client side from action _ The ASP.NET Forums_files/jquery-1.8.3.min.js.download"></script>
+	<script type="text/javascript">$.ajaxSetup({ cache: false }); var isProd = true;</script>
+	
+
+    
+	
+	<script type="text/javascript">if (self === top) { var antiClickjack = document.getElementById("antiClickjack"); antiClickjack.parentNode.removeChild(antiClickjack) } else top.location = self.location;</script>
+
+    
+
+    <script type="text/javascript">var isConsentRequired = false;</script>
+
+    
+</head>
+<body class="details">	
+
+	
+
+    <div class="all-content">
+        <div style="background-color:#000;"><a href="https://docs.microsoft.com/en-us/dotnet/azure/dotnet-sdk-azure-get-started?utm_source=az-devcenter-banner&amp;utm_medium=banner&amp;utm_campaign=aspnet-banner" style="display:block;"><img src="./How data is serialize into model when pass to client side from action _ The ASP.NET Forums_files/azure-get-started.png" style="margin:0 auto; display:block; max-width:100%;"></a></div>
+	    <!--Edit me from backoffice - Raw - Banner-->
+<!--<div style="background-color: #672D79;padding:10px;font-size:16px;text-align:center;color:#fff;">Register for the ASP.NET Core sessions presented by Scott Hunter, Jeff Fritz, and Dan Roth from the .NET/ASP.NET team at DEVintersection 2017! <a href="https://devintersection.com/#!/Visual-Studio-ASP-Azure-Conference/" style="color:#fff;">Learn more &gt;</a></div>-->
+		<header>
+			<div class="header-content">
+				<a href="https://www.microsoft.com/" id="logo" data-s-object-id="logo">
+                    <svg version="1.1" id="svg5358" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1033.746 220.695" enable-background="new 0 0 1033.746 220.695" xml:space="preserve"><path id="path5056" fill="#706D6E" d="M1033.745,99.838v-18.18h-22.576V53.395l-0.76,0.234l-21.205,6.487l-0.417,0.128v21.414h-33.469V69.73c0-5.556,1.242-9.807,3.689-12.643c2.432-2.801,5.909-4.225,10.343-4.225c3.188,0,6.49,0.752,9.812,2.232l0.832,0.371V36.32l-0.391-0.143c-3.1-1.114-7.315-1.676-12.539-1.676c-6.585,0-12.568,1.433-17.786,4.273c-5.222,2.844-9.329,6.903-12.205,12.065c-2.868,5.156-4.322,11.111-4.322,17.702v13.115H917.03v18.18h15.721v76.59h22.567v-76.59h33.469v48.672c0,20.045,9.455,30.203,28.101,30.203c3.065,0,6.289-0.359,9.583-1.063c3.352-0.722,5.634-1.443,6.978-2.213l0.298-0.176v-18.348l-0.918,0.607c-1.225,0.816-2.75,1.483-4.539,1.979c-1.796,0.505-3.296,0.758-4.457,0.758c-4.369,0-7.6-1.177-9.606-3.5c-2.027-2.344-3.057-6.443-3.057-12.177V99.838H1033.745L1033.745,99.838z M866.634,160.26c-8.191,0-14.648-2.716-19.2-8.066c-4.578-5.377-6.898-13.043-6.898-22.783c0-10.049,2.32-17.914,6.901-23.387c4.554-5.436,10.95-8.194,19.014-8.194c7.825,0,14.054,2.635,18.515,7.836c4.485,5.228,6.76,13.03,6.76,23.196c0,10.291-2.14,18.196-6.359,23.484C881.175,157.594,874.874,160.26,866.634,160.26 M867.639,79.375c-15.627,0-28.04,4.579-36.889,13.61c-8.844,9.032-13.329,21.531-13.329,37.153c0,14.838,4.378,26.773,13.012,35.468c8.634,8.698,20.384,13.104,34.92,13.104c15.148,0,27.313-4.643,36.16-13.799c8.845-9.146,13.326-21.527,13.326-36.784c0-15.07-4.205-27.094-12.503-35.731C894.035,83.756,882.358,79.375,867.639,79.375 M781.035,79.375c-10.63,0-19.422,2.719-26.14,8.08c-6.758,5.393-10.185,12.466-10.185,21.025c0,4.448,0.739,8.4,2.195,11.752c1.466,3.363,3.733,6.324,6.744,8.809c2.99,2.465,7.603,5.047,13.718,7.674c5.139,2.115,8.973,3.904,11.407,5.314c2.38,1.382,4.07,2.771,5.023,4.124c0.927,1.323,1.398,3.136,1.398,5.372c0,6.367-4.768,9.465-14.579,9.465c-3.639,0-7.79-0.76-12.338-2.258c-4.55-1.496-8.801-3.647-12.634-6.406l-0.936-0.672v21.727l0.344,0.16c3.193,1.474,7.219,2.717,11.963,3.695c4.736,0.979,9.039,1.477,12.778,1.477c11.534,0,20.823-2.732,27.601-8.125c6.821-5.43,10.279-12.67,10.279-21.525c0-6.388-1.861-11.867-5.53-16.284c-3.643-4.382-9.965-8.405-18.785-11.961c-7.026-2.82-11.527-5.161-13.384-6.958c-1.79-1.736-2.698-4.191-2.698-7.3c0-2.756,1.121-4.964,3.425-6.753c2.321-1.797,5.551-2.711,9.604-2.711c3.76,0,7.607,0.594,11.433,1.758c3.824,1.164,7.182,2.723,9.985,4.63l0.921,0.63V83.504l-0.354-0.152c-2.587-1.109-5.996-2.059-10.138-2.828C788.029,79.761,784.288,79.375,781.035,79.375 M685.878,160.26c-8.188,0-14.648-2.716-19.198-8.066c-4.58-5.377-6.896-13.041-6.896-22.783c0-10.049,2.318-17.914,6.901-23.387c4.55-5.436,10.944-8.194,19.013-8.194c7.822,0,14.051,2.635,18.514,7.836c4.484,5.228,6.76,13.03,6.76,23.196c0,10.291-2.142,18.196-6.361,23.484C700.419,157.594,694.12,160.26,685.878,160.26 M686.886,79.375c-15.632,0-28.044,4.579-36.889,13.61c-8.844,9.032-13.331,21.531-13.331,37.153c0,14.844,4.38,26.773,13.014,35.468c8.634,8.698,20.382,13.104,34.92,13.104c15.145,0,27.313-4.643,36.16-13.799c8.842-9.146,13.326-21.527,13.326-36.784c0-15.07-4.207-27.094-12.506-35.731C713.276,83.756,701.604,79.375,686.886,79.375 M602.409,98.07V81.658h-22.293v94.767h22.293v-48.477c0-8.243,1.868-15.015,5.556-20.13c3.642-5.054,8.494-7.615,14.418-7.615c2.007,0,4.261,0.332,6.702,0.986c2.416,0.651,4.166,1.357,5.199,2.102l0.936,0.679V81.496l-0.361-0.155c-2.076-0.882-5.012-1.327-8.729-1.327c-5.602,0-10.615,1.8-14.908,5.344c-3.77,3.115-6.494,7.387-8.577,12.713H602.409L602.409,98.07z M540.195,79.375c-10.226,0-19.349,2.193-27.108,6.516c-7.775,4.333-13.787,10.52-17.879,18.385c-4.072,7.848-6.14,17.014-6.14,27.235c0,8.954,2.005,17.171,5.967,24.413c3.966,7.254,9.578,12.928,16.682,16.865c7.094,3.931,15.293,5.924,24.37,5.924c10.594,0,19.639-2.118,26.892-6.295l0.292-0.168v-20.423l-0.937,0.684c-3.285,2.393-6.956,4.303-10.906,5.679c-3.939,1.375-7.532,2.07-10.681,2.07c-8.748,0-15.769-2.737-20.866-8.133c-5.109-5.403-7.699-12.99-7.699-22.537c0-9.607,2.701-17.389,8.025-23.131c5.306-5.726,12.341-8.629,20.907-8.629c7.327,0,14.468,2.48,21.223,7.381l0.934,0.679V84.371l-0.302-0.17c-2.542-1.423-6.008-2.598-10.313-3.488C548.37,79.824,544.18,79.375,540.195,79.375 M473.715,81.658h-22.293v94.767h22.293V81.658z M462.796,41.287c-3.668,0-6.868,1.249-9.497,3.725c-2.64,2.482-3.98,5.607-3.98,9.295c0,3.629,1.324,6.697,3.938,9.113c2.598,2.408,5.808,3.63,9.54,3.63c3.731,0,6.954-1.222,9.583-3.626c2.646-2.42,3.987-5.488,3.987-9.117c0-3.559-1.305-6.652-3.879-9.195C469.918,42.574,466.656,41.287,462.796,41.287 M407.177,74.667v101.757h22.75V44.189H398.44l-40.022,98.221l-38.839-98.221h-32.769v132.234h21.379V74.657h0.734l41.013,101.767h16.134l40.372-101.757H407.177L407.177,74.667z"></path><path id="path5058" fill="#F1511B" d="M104.867,104.867H0V0h104.867V104.867z"></path><path id="path5060" fill="#80CC28" d="M220.654,104.867H115.787V0h104.867V104.867z"></path><path id="path5062" fill="#00ADEF" d="M104.865,220.695H0V115.828h104.865V220.695z"></path><path id="path5064" fill="#FBBC09" d="M220.654,220.695H115.787V115.828h104.867V220.695z"></path></svg>
+				</a>
+
+				
+<div class="nav-user logged-in">
+	<a href="javascript:;" class="profile">
+		<img src="./How data is serialize into model when pass to client side from action _ The ASP.NET Forums_files/bzacks.jpg" style="width:25px;height:25px;" class="avatar" alt="user avatar">
+	</a>
+	<div class="common-dropdown collapse">
+		<a href="https://forums.asp.net/members/bzacks.aspx" class="username">bzacks</a>
+		<p id="user-points">9 point Member</p>
+		<ul>			
+			<li><a href="https://forums.asp.net/user/editprofile.aspx">Edit profile</a></li>     
+			
+			<li><a href="https://forums.asp.net/myforums.aspx/1/20">My threads</a></li>
+			<li><a href="https://forums.asp.net/user/privatemessages/1/20">Inbox </a></li>
+            <li><a href="https://forums.asp.net/mydata">Access my data</a></li>     
+			<li><a href="https://forums.asp.net/login/RedirectToLogout?ReturnUrl=%2fp%2f2162438%2f6287972.aspx%3fHow%2bdata%2bis%2bserialize%2binto%2bmodel%2bwhen%2bpass%2bto%2bclient%2bside%2bfrom%2baction">Sign out</a></li>
+		</ul>
+	</div>
+</div>
+
+				<div class="search-form">
+					<input name="searchterm" type="text" class="search-input" placeholder="Search">
+					<a href="javascript:;" class="search-submit">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" xml:space="preserve"><path fill="#FFFFFF" d="M5.89,11.594c1.32,0,2.532-0.461,3.49-1.229l7.267,7.268c0.122,0.119,0.28,0.182,0.439,0.182s0.319-0.063,0.44-0.182c0.242-0.244,0.242-0.639,0-0.881L10.26,9.486c0.767-0.958,1.229-2.17,1.229-3.49c0-3.087-2.511-5.598-5.599-5.598c-3.087,0-5.598,2.511-5.598,5.598S2.803,11.594,5.89,11.594 M5.89,1.642c2.401,0,4.354,1.953,4.354,4.354S8.291,10.35,5.89,10.35c-2.4,0-4.354-1.953-4.354-4.354S3.489,1.642,5.89,1.642"></path></svg>
+					</a>
+				</div>
+	
+					
+                <nav class="clearfix nav-main">
+                    <div>
+                        <a href="javascript:;" class="icon"></a>
+                        <a href="https://dotnet.microsoft.com/" class="c-logo c-cat-logo" data-s-object-id="navlogo"><span>.NET</span></a>
+                        <ul>
+                            <li><a href="https://dotnet.microsoft.com/learn/dotnet/what-is-dotnet">About</a></li>
+                            <li><a href="https://dotnet.microsoft.com/learn">Learn</a></li>
+                            <li><a href="https://dotnet.microsoft.com/learn/dotnet/architecture-guides">Architecture</a></li>
+                            <li><a href="https://docs.microsoft.com/en-us/dotnet/">Docs</a></li>
+                            <li><a href="https://dotnet.microsoft.com/download">Downloads</a></li>
+                            <li><a href="https://dotnet.microsoft.com/platform/community">Community</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            
+        </header>
+
+		
+
+        
+
+<div class="header-breadcrumb-content">
+    <a href="https://forums.asp.net/" title="ASP.NET Forums">ASP.NET Forums</a><span>/</span><a href="https://forums.asp.net/default.aspx/7?General+ASP+NET" title="General ASP.NET">General ASP.NET</a><span>/</span><a href="https://forums.asp.net/1146.aspx/1?MVC" title="MVC">MVC</a><span>/</span><a href="https://forums.asp.net/t/2162438.aspx?How+data+is+serialize+into+model+when+pass+to+client+side+from+action" title="How data is serialize into model when pass to client side from action">How data is serialize into model when pass to client side from action</a>
+</div>
+
+
+	
+
+	<div class="content-wrapper" id="content-wrapper">
+		
+		<h1 id="threadstatus" class="icon-rss-head  indent no-border" title="How data is serialize into model when pass to client side from action">How data is serialize into model when pass to client side from action<a class="icon" href="https://forums.asp.net/t/rss/2162438" title="Feed - How data is serialize into model when pass to client side from action">RSS</a>
+		</h1>
+		<div class="comment-count">
+			<h2>2 replies        
+				<a id="btnEmailSubscription" isdelete="true" href="javascript:;" style="">Unsubscribe via Email</a>            
+			</h2>
+			
+				<p><a href="https://forums.asp.net/p/2162438/6288004.aspx?Re+How+data+is+serialize+into+model+when+pass+to+client+side+from+action">Last post</a> 12-16-2019 05:50 AM by <a href="https://forums.asp.net/members/jiadongm.aspx" title="View jiadongm&#39;s profile">jiadongm</a></p>
+				
+			
+		</div>
+		<div class="pagination-thread first"><a href="https://forums.asp.net/t/prev/2162438">‹ Previous Thread</a><span class="separator">|</span><a href="https://forums.asp.net/t/next/2162438">Next Thread ›</a></div>
+		<div class="clear"></div>
+		<div class="share">
+			<a href="javascript:window.print();" class="share-print" title="Print">Print</a>
+			<a href="javascript:;" class="common-btn share-btn">Share</a>	
+			<div class="share-details" style="display:none;">
+				<ul>
+					<li><a href="https://twitter.com/share?url=https%3a%2f%2fforums.asp.net%2fp%2f2162438%2f6287972.aspx%3fHow%2bdata%2bis%2bserialize%2binto%2bmodel%2bwhen%2bpass%2bto%2bclient%2bside%2bfrom%2baction" class="twitter" title="Twitter"><span></span>Twitter</a></li>
+					<li><a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fforums.asp.net%2fp%2f2162438%2f6287972.aspx%3fHow%2bdata%2bis%2bserialize%2binto%2bmodel%2bwhen%2bpass%2bto%2bclient%2bside%2bfrom%2baction" class="facebook" title="Facebook"><span></span>Facebook</a></li>
+					<li><a href="mailto:?body=https%3a%2f%2fforums.asp.net%2fp%2f2162438%2f6287972.aspx%3fHow%2bdata%2bis%2bserialize%2binto%2bmodel%2bwhen%2bpass%2bto%2bclient%2bside%2bfrom%2baction" class="email" title="Email"><span></span>Email</a></li>
+				</ul>
+			</div>
+		</div>
+		
+
+<div class="module-nav-container">
+	<div class="module-nav nav-base">
+		<h2>Shortcuts</h2>
+		<ul>
+			<li><a href="https://forums.asp.net/f/active/1146/1/20">Active Threads</a></li>
+			<li><a href="https://forums.asp.net/f/unanswered/1146/1/20">Unanswered Threads</a></li>
+			<li><a href="https://forums.asp.net/f/unresolved/1146/1/20">Unresolved Threads</a></li>
+			
+				
+				<li><a href="https://forums.asp.net/f/mythreads/1146/1/20">My Threads</a></li>
+				<li><a href="https://forums.asp.net/ForumSubscriptions.aspx">Forum Subscriptions</a></li>                                        
+			
+			
+			<li><a href="https://www.asp.net/community/support">Support Options</a></li>
+			<li><a href="https://forums.asp.net/search">Advanced Search</a></li>
+		</ul>
+	</div>
+
+	
+	<div class="module-nav nav-base">
+		<h2>Related Links</h2>
+		<ul>
+            <li><a href="https://www.asp.net/mvc">Guidance</a></li><li><a href="https://www.asp.net/aspnet/samples/aspnet-mvc">Samples</a></li><li><a href="https://www.asp.net/mvc/videos">Videos</a></li>
+		</ul>
+	</div>
+	
+</div>
+		<ul class="comment-list">
+			   
+     
+<li class="comment-wrap thread-starter  " data-postid="6287972" title="">
+    <ul class="comment-nav">                    
+        
+                    <!--&& !thread.IsLocked-->
+                    <li><a href="https://forums.asp.net/post/set/1146/2162438/6287972">Reply</a><span class="separator">|</span></li>
+            <li><a href="https://forums.asp.net/post/edit/6287972">Edit</a><span class="separator">|</span></li><li><a href="javascript:;" data-uitype="favorites-post" data-postid="6287972">Favorites</a><span class="separator">|</span></li><li><a href="javascript:;" data-uitype="alert-post" data-postid="6287972">Alert Moderators</a></li>
+    </ul>
+    <div class="comment-left-col">
+        
+
+<a title="bzacks" href="https://forums.asp.net/members/bzacks.aspx" class="post-title">
+    bzacks
+</a>
+
+<p class="post-level">Member</p>
+<div class="post-rating Member" title="9 Points"></div>
+<p class="post-points">9 Points</p>
+
+<p class="post-count"><a href="https://forums.asp.net/search?q=authors%3A%28bzacks%29&amp;s=createdDate&amp;d=desc">15 Posts</a></p>
+
+    </div>
+    <div class="comment-right-col comment-body">                      
+        <a name="6287972"></a>      
+        <h3>How data is serialize into model when pass to client side from action</h3>
+        <p class="date">12-15-2019 06:20 PM<span class="print-only-inline"><span class="separator">|</span>bzacks</span><span class="print-no responsive-no"><span class="separator">|</span><a href="https://forums.asp.net/post/6287972.aspx" title="Permalink to this post">LINK</a></span><span class="separator">|</span>42.110.136.175</p>
+        <div>
+<p>my question is very basic question. see how list of data is pass from action to client side.</p>
+<pre class="prettyprint lang-auto prettyprinted" style=""><span class="pun">[</span><span class="typ">HttpGet</span><span class="pun">]</span><span class="pln">
+        </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">ActionResult</span><span class="pln"> </span><span class="typ">Index</span><span class="pun">()</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">
+
+            </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">UserData</span><span class="pun">&gt;</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">UserData</span><span class="pun">&gt;</span><span class="pln">
+                </span><span class="pun">{</span><span class="pln">
+                    </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">UserData</span><span class="pln">
+                    </span><span class="pun">{</span><span class="pln">
+                        ID </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln">
+                        </span><span class="typ">Name</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Simon"</span><span class="pln">
+                    </span><span class="pun">},</span><span class="pln">
+                    </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">UserData</span><span class="pln">
+                    </span><span class="pun">{</span><span class="pln">
+                        ID </span><span class="pun">=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln">
+                        </span><span class="typ">Name</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Alex"</span><span class="pln">
+                    </span><span class="pun">}</span><span class="pln">
+                </span><span class="pun">};</span><span class="pln">
+          
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">View</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span></pre>
+<p>passed model data is captured like below way which is not clear to me</p>
+<pre class="prettyprint lang-auto prettyprinted" style=""><span class="pln"> </span><span class="kwd">var</span><span class="pln"> keys </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">keys</span><span class="pun">(</span><span class="lit">@Html</span><span class="pun">.</span><span class="typ">Raw</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">.</span><span class="typ">Encode</span><span class="pun">(</span><span class="typ">Model</span><span class="pun">[</span><span class="lit">0</span><span class="pun">])));</span><span class="pln">
+        </span><span class="kwd">var</span><span class="pln"> columns </span><span class="pun">=</span><span class="pln"> keys</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">key</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> title</span><span class="pun">:</span><span class="pln"> key </span><span class="pun">};</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+
+        </span><span class="kwd">var</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@Html</span><span class="pun">.</span><span class="typ">Raw</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">.</span><span class="typ">Encode</span><span class="pun">(</span><span class="typ">Model</span><span class="pun">));</span><span class="pln">
+        </span><span class="kwd">var</span><span class="pln"> dataSet </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">d</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">values</span><span class="pun">(</span><span class="pln">d</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+
+        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">columns</span><span class="pun">);</span><span class="pln">
+        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">dataSet</span><span class="pun">);</span></pre>
+<p>see this code first</p>
+<pre class="prettyprint lang-auto prettyprinted" style=""><span class="kwd">var</span><span class="pln"> keys </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">keys</span><span class="pun">(</span><span class="lit">@Html</span><span class="pun">.</span><span class="typ">Raw</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">.</span><span class="typ">Encode</span><span class="pun">(</span><span class="typ">Model</span><span class="pun">[</span><span class="lit">0</span><span class="pun">])));</span><span class="pln">
+	</span><span class="kwd">var</span><span class="pln"> columns </span><span class="pun">=</span><span class="pln"> keys</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">key</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    	</span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> title</span><span class="pun">:</span><span class="pln"> key </span><span class="pun">};</span><span class="pln">
+</span><span class="pun">});</span></pre>
+<p>1) we know list is kind of array then why keys are extracted from zeroth position ?&nbsp;Model[0] why not&nbsp;Model[1]</p>
+<p>i need to see in what form data is stored into model when pass from action to client side ?</p>
+<p>see this code again</p>
+<pre class="prettyprint lang-auto prettyprinted" style=""><span class="kwd">var</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@Html</span><span class="pun">.</span><span class="typ">Raw</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">.</span><span class="typ">Encode</span><span class="pun">(</span><span class="typ">Model</span><span class="pun">));</span><span class="pln">
+	</span><span class="kwd">var</span><span class="pln"> dataSet </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">d</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    	</span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">values</span><span class="pun">(</span><span class="pln">d</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">});</span></pre>
+<p>2) in above code no ordinal position mention during extracting data. why?</p>
+<p>3) what is&nbsp;<span class="typ">Model</span><span class="pun">[</span><span class="lit">0</span><span class="pun">] ? how it comes? because in mvc we write model like&nbsp;<strong>@model&nbsp;</strong>not
+<strong>Model</strong></span></p>
+<p><span class="pun">4) is this <strong>Model&nbsp;</strong></span>is MVC related model or javascript&nbsp;<span class="pun"><strong>Model object ?</strong></span></p>
+<p><span class="pun"><strong><span class="comment-copy">model is javascript object then how server side model data comes into js model ?</span></strong></span></p>
+<p>so in case of keys ordinal position mention but in case of data no ordinal position mentioned. please explain if some one understand what i am trying to know.</p>
+<p>please explain how above code is working. thanks</p>
+<p></p>
+</div>		
+                 
+    </div>	
+    
+		<div class="comment-history">
+			<ul>
+				<li>Edited by <a href="https://forums.asp.net/members/bzacks.aspx">bzacks</a> on 12-15-2019 06:49 PM</li>
+			
+				<li>Edited by <a href="https://forums.asp.net/members/bzacks.aspx">bzacks</a> on 12-15-2019 07:39 PM</li>
+			
+				<li>Edited by <a href="https://forums.asp.net/members/bzacks.aspx">bzacks</a> on 12-15-2019 08:14 PM</li>
+			
+			</ul>
+		</div>
+	
+</li>
+   
+     
+<li class="comment-wrap   " data-postid="6287978" title="">
+    <ul class="comment-nav">                    
+        
+                    <!--&& !thread.IsLocked-->
+                    <li><a href="https://forums.asp.net/post/set/1146/2162438/6287978">Reply</a><span class="separator">|</span></li>
+            
+                <li><a href="javascript:;" data-uitype="markasanswer" data-postid="6287978">Mark As Answer</a><span class="separator">|</span></li>
+            <li><a href="javascript:;" data-uitype="favorites-post" data-postid="6287978">Favorites</a><span class="separator">|</span></li><li><a href="javascript:;" data-uitype="alert-post" data-postid="6287978">Alert Moderators</a></li>
+    </ul>
+    <div class="comment-left-col">
+        
+
+<a title="bruce (sqlwork.com)" href="https://forums.asp.net/members/bruce%20(sqlwork.com).aspx" class="post-title">
+    bruce (sqlwo...
+</a>
+
+<p class="post-level">All-Star</p>
+<div class="post-rating All-Star" title="53704 Points"></div>
+<p class="post-points">53704 Points</p>
+
+<p class="post-count"><a href="https://forums.asp.net/search?q=authors%3A%28bruce%20%28sqlwork.com%29%29&amp;s=createdDate&amp;d=desc">13387 Posts</a></p>
+
+    </div>
+    <div class="comment-right-col comment-body">                      
+        <a name="6287978"></a>      
+        <h3>Re: How data is serialize into model when pass to client side from action</h3>
+        <p class="date">12-15-2019 09:22 PM<span class="print-only-inline"><span class="separator">|</span>bruce (sqlwork.com)</span><span class="print-no responsive-no"><span class="separator">|</span><a href="https://forums.asp.net/post/6287978.aspx" title="Permalink to this post">LINK</a></span>
+        </p><div>
+<p>JSON by definition is valid JavaScript object syntax. This means when producing html which includes javascript you can set a javascript variable to a json string.<span class="pln"></span></p>
+<p><span class="pln"></span><span class="kwd">&nbsp; &nbsp;var</span><span class="pln"> data
+</span><span class="pun">=</span><span class="pln"> </span><span class="lit">@Html</span><span class="pun">.</span><span class="typ">Raw</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">.</span><span class="typ">Encode</span><span class="pun">(</span><span class="typ">Model</span><span class="pun">));</span></p>
+<p>Model is a property in razor that return the model value pass to return View(model). Its a .net object. the Json.Encode converts it to a JSON string.&nbsp;the @HtmlRaw() helper &nbsp;is used to prevent HTML encoding of the json string&nbsp;(view page source to see output).
+ the @&lt;C# expression&gt; is razor syntax to return the string value of the following C# expression.</p>
+<p>your sample javascript code is rather sloppy as it renders Model data twice, increasing payload size. it would be better written:</p>
+<pre class="prettyprint lang-auto prettyprinted" style=""><span class="com">// render the View model as javascript source text just once</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@Html</span><span class="pun">.</span><span class="typ">Raw</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">.</span><span class="typ">Encode</span><span class="pun">(</span><span class="typ">Model</span><span class="pun">));</span><span class="pln">
+
+</span><span class="com">// get array of the property names of the first elment of the array (javascript reflection)</span><br><span class="com">// handle empty array</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> keys </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">length </span><span class="pun">?</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">keys</span><span class="pun">(</span><span class="pln">data</span><span class="pun">[</span><span class="lit">0</span><span class="pun">])</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="pun">[];</span><span class="pln">
+
+</span><span class="com">// map property names array of col format objects </span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> columns </span><span class="pun">=</span><span class="pln"> keys</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">key</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> title</span><span class="pun">:</span><span class="pln"> key </span><span class="pun">};</span><span class="pln">
+</span><span class="pun">});</span><span class="pln">
+
+</span><span class="com">// map array of objects to an array of array of property values via reflection</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> dataSet </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">d</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+     </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">values</span><span class="pun">(</span><span class="pln">d</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">});</span><span class="pln">
+
+console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">columns</span><span class="pun">);</span><span class="pln">
+console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">dataSet</span><span class="pun">);</span></pre>
+<p></p>
+</div>		
+                 
+    </div>	
+    
+        <div class="comment-signiture">
+            bruce (sqlwork.com)
+        </div>
+    
+		<div class="comment-history">
+			<ul>
+				<li>Edited by <a href="https://forums.asp.net/members/bruce%20(sqlwork.com).aspx">bruce (sqlwork.com)</a> on 12-15-2019 09:29 PM</li>
+			
+			</ul>
+		</div>
+	
+</li>
+   
+     
+<li class="comment-wrap   " data-postid="6288004" title="">
+    <ul class="comment-nav">                    
+        
+                    <!--&& !thread.IsLocked-->
+                    <li><a href="https://forums.asp.net/post/set/1146/2162438/6288004">Reply</a><span class="separator">|</span></li>
+            
+                <li><a href="javascript:;" data-uitype="markasanswer" data-postid="6288004">Mark As Answer</a><span class="separator">|</span></li>
+            <li><a href="javascript:;" data-uitype="favorites-post" data-postid="6288004">Favorites</a><span class="separator">|</span></li><li><a href="javascript:;" data-uitype="alert-post" data-postid="6288004">Alert Moderators</a></li>
+    </ul>
+    <div class="comment-left-col">
+        
+
+<a title="jiadongm" href="https://forums.asp.net/members/jiadongm.aspx" class="post-title">
+    jiadongm
+</a>
+
+<p class="post-level">Member</p>
+<div class="post-rating Member" title="470 Points"></div>
+<p class="post-points">470 Points</p>
+
+<p class="post-count"><a href="https://forums.asp.net/search?q=authors%3A%28jiadongm%29&amp;s=createdDate&amp;d=desc">182 Posts</a></p>
+
+    </div>
+    <div class="comment-right-col comment-body">                      
+        <a name="6288004"></a>      
+        <h3>Re: How data is serialize into model when pass to client side from action</h3>
+        <p class="date">12-16-2019 05:50 AM<span class="print-only-inline"><span class="separator">|</span>jiadongm</span><span class="print-no responsive-no"><span class="separator">|</span><a href="https://forums.asp.net/post/6288004.aspx" title="Permalink to this post">LINK</a></span>
+        </p><div>
+<p>Hi bzacks,</p>
+<p></p>
+<blockquote><span class="icon-blockquote"></span>
+<h4>bzacks</h4>
+i need to see in what form data is stored into model when pass from action to client side ?</blockquote>
+<p></p>
+<p>You can press F12 to check the data format after using the following code to convert</p>
+<pre class="prettyprint lang-auto prettyprinted" style=""><span class="kwd">var</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@Html</span><span class="pun">.</span><span class="typ">Raw</span><span class="pun">(</span><span class="typ">Json</span><span class="pun">.</span><span class="typ">Encode</span><span class="pun">(</span><span class="typ">Model</span><span class="pun">));</span><span class="pln">
+console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span></pre>
+<p><img src="./How data is serialize into model when pass to client side from action _ The ASP.NET Forums_files/Ow16G.png" alt=""></p>
+<p>And then you can see&nbsp;<span>why keys are extracted from zeroth position.</span></p>
+<p><span>Best Regards,</span></p>
+<p><span>Jiadong Meng</span></p>
+</div>		
+                 
+    </div>	
+    
+        <div class="comment-signiture">
+            MSDN Community Support
+<br>
+<br>Please remember to click "Mark as Answer" the responses that resolved your issue.
+<br>
+<br>If you have any compliments or complaints to MSDN Support, feel free to contact MSDNFSF@microsoft.com
+        </div>
+    
+</li>
+
+		</ul>		
+		<div class="clear"></div>		
+		<div class="pagination-thread"><a href="https://forums.asp.net/t/prev/2162438">‹ Previous Thread</a><span class="separator">|</span><a href="https://forums.asp.net/t/next/2162438">Next Thread ›</a></div>
+	</div>
+
+
+        
+        <form id="__AjaxAntiForgeryForm" action="https://forums.asp.net/p/2162438/6287972.aspx?How+data+is+serialize+into+model+when+pass+to+client+side+from+action#" method="post" aria-label="hidden form"><input name="__RequestVerificationToken" type="hidden" value="T-dLZbVO4KMCzluSv8CrLCa0nURjCIHVxwnDzJnTB5suoPzMUD-iUmiIpHexnwPTwTJQ1LZlgwW1y-4xStDqWjJZT-c1"></form>
+
+		
+			<div class="ad-728x90" style="height:0px;"></div>		
+		<footer>
+			<div class="footer">
+<div class="clear"></div>
+<ul class="footer-menu">
+<li class="block">
+<h2>This site is managed for Microsoft by Neudesic, LLC. | © 2019 Microsoft. All rights reserved.</h2>
+</li>
+<li><a href="https://go.microsoft.com/fwlink/?LinkId=521839" data-s-object-id="footer" data-mscc-ic="false">Privacy Statement</a><span class="separator">|</span></li>
+<li><a href="https://www.asp.net/terms-of-use" data-s-object-id="footer" data-mscc-ic="false">Terms of Use</a><span class="separator">|</span></li>
+<li><a href="https://www.asp.net/contact-us" data-s-object-id="footer">Contact Us</a><span class="separator">|</span></li>
+<li><a href="https://www.effectusmedia.com/?site=asp#contactus" data-s-object-id="footer">Advertise with Us</a><span class="separator">|</span></li>
+<li><a href="https://www.umbraco.org/" data-s-object-id="footer">CMS by Umbraco</a><span class="separator">|</span></li>
+<li><a href="https://azure.microsoft.com/">Hosted on Microsoft Azure</a></li></ul>
+<ul class="footer-menu last">
+<li class="block">
+<h2><a class="logo-microsoft" title="Microsoft" href="https://microsoft.com/" data-s-object-id="footer">
+<svg version="1.1" id="svg5358" xmlns:svg="https://www.w3.org/2000/svg" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 220.654 220.695" enable-background="new 0 0 220.654 220.695" xml:space="preserve">
+<path id="path5058" fill="#F1511B" d="M104.867,104.867H0V0h104.867V104.867z"></path>
+<path id="path5060" fill="#80CC28" d="M220.654,104.867H115.787V0h104.867V104.867z"></path>
+<path id="path5062" fill="#00ADEF" d="M104.865,220.695H0V115.828h104.865V220.695z"></path>
+<path id="path5064" fill="#FBBC09" d="M220.654,220.695H115.787V115.828h104.867V220.695z"></path>
+</svg>
+</a></h2>
+</li>
+<li><a href="https://aspnet.uservoice.com/" data-s-object-id="footer">Feedback on ASP.NET</a><span class="separator">|</span></li>
+<li><a href="https://github.com/aspnet/Home/blob/master/CONTRIBUTING.md#bugs-and-feature-requests" data-s-object-id="footer">File Bugs</a><span class="separator">|</span></li>
+<li><a href="https://www.asp.net/support">Support Lifecycle</a></li>
+</ul>
+</div>
+		</footer>
+    </div>
+
+    <script type="text/javascript">var searchDomain = "https://www.asp.net";</script>
+	<script type="text/javascript" src="./How data is serialize into model when pass to client side from action _ The ASP.NET Forums_files/cheetah-main.js.download"></script>
+    
+    
+    
+
+<script type="text/javascript">
+	function loadModal(type, modal) {
+		$("[data-uitype|='" + type + "']").each(function () {
+			$(this).click({ container: $("#dlg-" + type), modal: modal }, function (evt) {
+				postId = $(this).attr("data-postid");
+				forumId = $(this).attr("data-forumid");
+				username = $(this).attr("data-username");
+
+				var $container = evt.data.container;
+				var $modal = evt.data.modal;
+				var $content = $(".modal-inner", $container);
+				var $messages = $(".messages", $container);
+
+				$content.html("Loading...");
+				$content.show();
+				$messages.hide();
+				$modal.show();
+
+				setTimeout(function () {
+					$.ajax({
+						url: "/dialog/" + type + "/" + (postId || forumId || username || 0),
+						dataType: "html",
+						success: function (data) {
+                            $content.html(data);
+                            try {
+                                $(".modal-inner>form>p>input")[0].focus();
+                            } catch (err) { console.log(""); }
+                            try {
+                                $(".modal-inner>form>select")[0].focus();
+                            } catch (err) { console.log(""); }
+                            try {
+                                $(".modal-inner>form>p>select")[0].focus();
+                            } catch (err) { console.log(""); }
+                            try {
+                                $(".modal-inner>form>div>p>input")[0].focus();
+                            } catch (err) { console.log(""); }
+                            try {
+                                $(".modal-inner>form").find("input#subject").focus();
+                            } catch (err) { console.log(""); }
+						}
+					});
+				}, 250);
+			});
+		});
+    }
+
+    (function($) {
+        $.fn.modalTabbing = function() {
+
+            var tabbing = function(jqSelector) {
+                var inputs = $(jqSelector).find('select, input, textarea, button, a[href]').filter(':visible').not(':disabled');
+
+                //Focus to first element in the container.
+                inputs.first().focus();
+
+                $(jqSelector).on('keydown', function(e) {
+                    if (e.which === 9) {
+
+                        var inputs = $(jqSelector).find('select, input, textarea, button, a[href]').filter(':visible').not(':disabled');
+
+                        /*redirect last tab to first input*/
+                        if (!e.shiftKey) {
+                            if (inputs[inputs.length - 1] === e.target) {
+                                e.preventDefault();
+                                inputs.first().focus();
+                            }
+                        }
+                        /*redirect first shift+tab to last input*/
+                        else {
+                            if (inputs[0] === e.target) {
+                                e.preventDefault();
+                                inputs.last().focus();
+                            }
+                        }
+                    }
+                });
+            };
+
+            return this.each(function() {
+                tabbing(this);
+            });
+
+        };
+    })(jQuery);
+</script>
+
+<div id="dlg-favorites-post" class="modal" style="display:none;">
+	<a href="javascript:;" class="modal-close">✖</a>
+	<div class="modal-contents clearfix">
+		<h2>Add / Remove the following favorites</h2>
+		<div class="modal-inner">Loading...</div>
+		<div class="messages" style="display:none;"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+        loadModal("favorites-post", $(document).modal({ id: "#dlg-favorites-post", overlay: ".modal-cover" }));
+        $("#dlg-favorites-post").modalTabbing();
+	});
+</script>
+
+<div id="dlg-alert-post" class="modal" style="display:none;">
+	<a href="javascript:;" class="modal-close">✖</a>
+	<div class="modal-contents clearfix">
+		<h2>Alert Moderators</h2>
+		<div class="modal-inner">Loading...</div>
+		<div class="messages" style="display:none;"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+        loadModal("alert-post", $(document).modal({ id: "#dlg-alert-post", overlay: ".modal-cover" }));
+        $("#dlg-alert-post").modalTabbing();    
+	});
+</script>
+
+	
+    
+    
+    
+    
+    
+	<script type="text/javascript">
+        $(document).ready(function()
+        {         
+            //-- Scroll post route into view
+            var postMatches = window.location.href.match("/p/[0-9]+/([0-9]+)");
+            if (postMatches != null && postMatches.length > 1) {
+                var elem = $('a[name="' + postMatches[1] + '"]');
+                if (elem != null && elem.offset() != null) {
+                    $(document).scrollTop(elem.offset().top);
+                }
+            }
+			
+            $(".share-btn").click(function () {
+            	$(".share-details").slideToggle("fast");
+            });
+
+            
+				
+				!function(){				
+					var route = "/soa/thread/subscriptions/get/2162438";
+					var ele = $("a#btnEmailSubscription");
+					$.ajax({ url: route, context: ele, 
+						success: function(data){
+							var isUnsubcribe = data != null && data != ""; //null data means no sub, so if there is data, then we unsubscribe
+							$(this).show();
+							$(this).attr("isDelete", isUnsubcribe); 
+							$(this).text(isUnsubcribe ? "Unsubscribe via Email" : "Subscribe via Email");
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown){
+							if (!isProd) {
+            					alert("Error: " + textStatus + " " + errorThrown);
+            				}
+						}
+					});
+				}();
+   
+				$("#btnEmailSubscription").click(function()
+				{
+				   var route = "/soa/thread/subscriptions/set/2162438/" + $("#btnEmailSubscription").attr("isDelete");
+				   $.ajax(
+				   {
+					   url: route, context: $(this), 
+					   success: function(data, textStatus, XMLHttpRequest)
+					   {
+					   		$(this).attr("isDelete", !data.IsDelete);
+					   		$(this).text(data.IsDelete ? "Subscribe via Email" : "Unsubscribe via Email");
+					   },
+					   error: function(XMLHttpRequest, textStatus, errorThrown)
+					   {
+							if (!isProd) {
+            					alert("Error: " + textStatus + " " + errorThrown);
+            				}
+					   }
+					});
+				});
+			
+        });
+    </script>
+
+	 
+
+<script type="text/javascript" src="./How data is serialize into model when pass to client side from action _ The ASP.NET Forums_files/prettify.js.download"></script>
+<script type="text/javascript">
+    $(document).ready(function () {        
+		
+		
+            $("[data-uitype|='markasanswer']").each(function()
+            {
+                $(this).click(function(evt)
+                {
+                    var targetID = $(this).attr("data-postid");
+					var targetLi = $("li[data-postid='" + targetID + "']");
+
+                    targetLi.fadeTo(250, 0.2);
+                        
+                    $.ajax(
+                    {
+                        type: "POST",
+						url : "/soa/post/status/set/" + targetID,
+						context : $(this),
+						data: AddAntiForgeryToken(),
+						success: function( data, status, req )
+						{
+							$(this).text(data.IsAnswered ? "Mark As Not Answer" : "Mark As Answer");
+                            
+							$("#threadstatus").toggleClass("icon-answered", data.ThreadIsAnswered);
+							targetLi.toggleClass("answered");
+							targetLi.fadeTo(250, 1.0);
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown)
+						{
+							if (!isProd) {
+            					alert("Error: " + textStatus + " " + errorThrown);
+            				}
+						}
+                    });
+                });
+			});
+		
+    });    
+</script>
+
+    
+    
+	<script type="text/javascript">if ((Math.floor(Math.random() * 100)) < 0) { $.getScript('/v-2019-07-08-001/resources/scripts/scripts-bundle/survey.js'); }</script>
+	
+	<script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-61337531-1', 'auto');
+        ga('send', 'pageview');
+	</script>
+    
+
+	<div class="modal-cover" style="display:none;"></div>
+
+
+</body></html>
